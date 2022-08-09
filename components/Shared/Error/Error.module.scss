@@ -1,0 +1,46 @@
+
+.error {
+  position: absolute;
+  right: 42px;
+  bottom: 37px;
+}
+
+.errorContainer {
+  background: #ffffff;
+  box-shadow: 4px
+    rgba(0, 0, 0, 0.53);
+  border-radius: 15px;
+  width: 452px;
+  height: 228px;
+}
+
+.errorCloseIcon {
+  position: absolute;
+  top: 19px;
+  right: 19px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.errorImage {
+  width: 178px;
+  height: 100px;
+}
+.errorContent {
+  text-align: center;
+  padding-top: 15px;
+}
+.errorTitle {
+  font-size: 16px;
+  line-height: 16px;
+  font-family: "Helvetica Bold";
+  margin-top: 20px;
+  color:black;
+}
+.errorText {
+  font-size: 16px;
+  line-height: 16px;
+  margin-top: 12px;
+  color:black;
+}

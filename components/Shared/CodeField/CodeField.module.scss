@@ -1,0 +1,15 @@
+@use "../../../styles/tools.scss" as *;
+.codeField {
+    display: flex;
+    gap:toVw(30,"desktop");
+  &Input {
+    background: #222222;
+    border: toVw(2,"desktop") solid rgba(191, 191, 191, 0.53);
+    border-radius: toVw(16,"desktop");
+    width: toVw(66,"desktop");
+    height: toVw(63,"desktop");
+    text-align: center;
+    font-size: toVw(23,"desktop");
+    color:white;
+  }
+}
