@@ -1,4 +1,3 @@
-
 .input {
   background: #222222;
   border: 2px solid rgba(191, 191, 191, 0.53);
@@ -7,12 +6,10 @@
   display: flex;
   align-items: center;
   max-height: 50px;
-  
+
   &:focus-within {
     border-color: rgba(233, 233, 233, 0.747);
   }
-  
-  
 }
 
 .inputField {
@@ -26,24 +23,31 @@
   &::placeholder {
     color: #949494;
   }
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #222222 inset !important;
+  }
 }
 
-.inputPrefix{
-    margin-right: 10px;
+.inputPrefix {
+  margin-right: 10px;
 }
 
 .inputSuffix {
   margin-left: 10px;
   margin-left: auto;
 }
-.inputPrefix,.inputSuffix{
-  &>*{
+.inputPrefix,
+.inputSuffix {
+  & > * {
     width: 100%;
     height: 100%;
     max-width: 20px;
-    color:#494949;
+    color: #494949;
   }
 }
-.inputSuffixClickable{
-    cursor: pointer;
+.inputSuffixClickable {
+  cursor: pointer;
 }

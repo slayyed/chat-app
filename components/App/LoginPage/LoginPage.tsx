@@ -6,6 +6,7 @@ import Button from "../../Shared/Button/Button";
 import Error from "../../Shared/Error/Error";
 import Spinner from "../../Shared/Spinner/Spinner";
 const LoginPage = () => {
+  //Form state 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,20 +14,22 @@ const LoginPage = () => {
 
   //Submit controller
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    // event.preventDefault();
   };
+  //Field change handler
   const handleFieldChange =
     (fieldName: "email" | "password") =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setFormData((prev) => ({ ...prev, [fieldName]: e.target.value }));
-    };
+  };
+  //Button activity status
   const isButtonDisabled = (): boolean => {
     return Object.values(formData).some((value) => {
       return !!value === false;
     });
   };
   return (
-    <Form className={styles.loginPageForm} onSubmit={handleSubmit}>
+    <Form method="POST" action="/api/login" className={styles.loginPageForm} onSubmit={handleSubmit}>
       {/* <Error text={"123"} onClose={() => ({})}/> */}
       {/* <Spinner /> */}
       <Form.Item label="Электронная почта">
@@ -34,6 +37,7 @@ const LoginPage = () => {
           type={"email"}
           required={true}
           value={formData.email}
+          name="email"
           placeholder="Введите адрес электронной почты"
           suffix={
             <svg
@@ -55,6 +59,7 @@ const LoginPage = () => {
       <Form.Item label="Пароль">
         <Input.Password
           placeholder="Введите пароль"
+          name="password"
           value={formData.password}
           onChange={handleFieldChange("password")}
         />
@@ -63,7 +68,6 @@ const LoginPage = () => {
       <div className="login-page__form-remember-me"></div>
       <div className={styles.loginPageFormButton}>
         <Button disabled={isButtonDisabled()}>
-          {/* <CheckIcon /> */}
           <svg
             width="23"
             height="23"

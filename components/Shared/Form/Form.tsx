@@ -7,6 +7,8 @@ interface IFormProps {
   children: React.ReactNode;
   onSubmit?: React.FormEventHandler;
   className?: string;
+  method?:"GET" | "POST";
+  action?:string;
 }
 interface IFormItemProps {
   children: React.ReactNode;
@@ -22,11 +24,12 @@ const Form: React.FC<IFormProps> & {
   },
   children,
   className = "",
+  ...props
 }) => {
 
   const classes = `${styles.form} ${className}`.trim();
   return (
-    <form className={classes} onSubmit={onSubmit}>
+    <form {...props} className={classes} onSubmit={onSubmit}>
       {children}
     </form>
   );
