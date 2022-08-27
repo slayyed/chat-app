@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import prisma from "../../lib/prisma";
-class CredentialsDbInteractions {
+class CredentialsOrmLayer {
   /**
    * Update credentials by query
    */
@@ -27,4 +27,4 @@ class CredentialsDbInteractions {
   }
 }
 
-export default new CredentialsDbInteractions();
+export default new CredentialsOrmLayer();

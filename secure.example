@@ -1,0 +1,11 @@
+//rename to secure.ts
+const ENVSECRETS = {
+  REFRESH_SECRET: "",
+  ACCESS_SECRET: "",
+  REFRESH_LIFETIME: "",
+  ACCESS_LIFETIME: "",
+  COMPANY_MAIL_LOGIN: "",
+  COMPANY_MAIL_PASSWORD: "",
+};
+
+export default ENVSECRETS;

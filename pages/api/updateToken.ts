@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import CredentialsDbInteractions from "../../services/credentials/interactions.prisma";
+import CredentialsOrmLayer from "../../services/credentials/credentials.orm";
 import bcrypt from "bcryptjs";
 type LoginData = {
   email: string;

@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import CredentialsDbInteractions from "../../services/credentials/interactions.prisma";
+import CredentialsOrmLayer from "../../services/credentials/credentials.orm";
 import bcrypt from "bcryptjs";
 type LoginData = {
   email: string;
@@ -10,7 +10,7 @@ type LoginData = {
 async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     // Find a row with this credentials
-    const loginData = await CredentialsDbInteractions.findCredentials({
+    const loginData = await CredentialsOrmLayer.findCredentials({
       where: {
         email: req.body.email as LoginData["email"],
       },
