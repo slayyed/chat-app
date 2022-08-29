@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Form from "../../Shared/Form/Form";
-import styles from "./registerPage.module.scss";
+import styles from "./RegisterPage.module.scss";
 import Input from "../../Shared/Input/Input";
 import Button from "../../Shared/Button/Button";
 const RegisterPage = () => {
