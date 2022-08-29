@@ -1,6 +1,5 @@
 import { sign, verify } from "jsonwebtoken";
 import ms from "ms";
-import SECRETS from "../../env.config";
 import { TokenORMLayer } from "./token.orm";
 import {
   IToken,
@@ -33,8 +32,8 @@ class Token extends TokenORMLayer {
   createAccessToken(payload: ITokenPayload) {
     return this.createToken(
       payload,
-      SECRETS.ACCESS_LIFETIME,
-      SECRETS.ACCESS_SECRET
+      process.env.ACCESS_LIFETIME!,
+      process.env.ACCESS_SECRET!
     );
   }
   storeRefreshTokenInDb(refreshToken: IToken, credentialsId: ICredentialsId) {
@@ -57,8 +56,8 @@ class Token extends TokenORMLayer {
   async createRefreshToken(payload: ITokenPayload) {
     const token = this.createToken(
       payload,
-      SECRETS.REFRESH_LIFETIME,
-      SECRETS.REFRESH_SECRET
+      process.env.REFRESH_LIFETIME!,
+      process.env.REFRESH_SECRET!
     );
     await this.storeRefreshTokenInDb(token.token, 1);
     return token;

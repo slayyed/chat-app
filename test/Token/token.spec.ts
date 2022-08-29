@@ -1,5 +1,4 @@
 import { describe, test, expect } from "@jest/globals";
-import SECRETS from "../../env.config";
 import Token from "../../services/token/token";
 
 describe("Token", function () {
@@ -7,8 +6,8 @@ describe("Token", function () {
     expect(
       Token.createToken(
         { id: 1, email: "test@test.ru" },
-        SECRETS.ACCESS_LIFETIME,
-        SECRETS.ACCESS_SECRET
+        process.env.ACCESS_LIFETIME!,
+        process.env.ACCESS_SECRET!
       )
     ).toBeTruthy();
   });
