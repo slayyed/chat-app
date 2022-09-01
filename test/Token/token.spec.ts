@@ -32,8 +32,4 @@ describe("Token", function () {
     // Else it will return undefined
     expect(Token.decodeToken(token, wrongSecret)).toBeUndefined();
   });
-
-  // test("Is refresh token storing in db", async () => {
-  //   await Token.createRefreshToken({ id: 1, email: "test@mail.ru" });
-  // });
 });

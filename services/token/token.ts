@@ -9,6 +9,7 @@ import {
   ITokenSecret,
 } from "../../types/Token";
 import { ICredentialsId } from "../../types/Credentials";
+import storeRefreshToken from "../../prisma/queries/token/storeRefreshToken";
 class Token extends TokenORMLayer {
   constructor() {
     super();
@@ -36,22 +37,7 @@ class Token extends TokenORMLayer {
       process.env.ACCESS_SECRET!
     );
   }
-  storeRefreshTokenInDb(refreshToken: IToken, credentialsId: ICredentialsId) {
-    super.createOrUpdate({
-      where: { credentialsId },
-      update: {
-        refreshToken,
-      },
-      create: {
-        refreshToken,
-        credentials: {
-          connect: {
-            id: credentialsId,
-          },
-        },
-      },
-    });
-  }
+
   //Create refresh token
   async createRefreshToken(payload: ITokenPayload) {
     const token = this.createToken(
@@ -59,7 +45,7 @@ class Token extends TokenORMLayer {
       process.env.REFRESH_LIFETIME!,
       process.env.REFRESH_SECRET!
     );
-    await this.storeRefreshTokenInDb(token.token, 1);
+    await storeRefreshToken(token.token, 1);
     return token;
   }
 
