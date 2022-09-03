@@ -2,14 +2,14 @@ import prisma from "../../../lib/prisma";
 import {
   ICredentialsEmail,
   ICredentialsPassword,
+  ICredentialsPasswordSalt,
 } from "../../../types/Credentials";
 
 function createCredentials(
   email: ICredentialsEmail,
-  password: ICredentialsPassword
+  password: ICredentialsPassword,
+  passwordSalt: ICredentialsPasswordSalt
 ) {
-  const passwordSalt = "qwe";
-
   return prisma.credentials.create({
     data: {
       email,

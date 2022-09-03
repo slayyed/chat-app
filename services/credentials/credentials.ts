@@ -1,30 +1,22 @@
-import { Prisma } from "@prisma/client";
-import prisma from "../../lib/prisma";
-class CredentialsOrmLayer {
-  /**
-   * Update credentials by query
-   */
-  async update(args: Prisma.CredentialsUpdateArgs) {
-    return await prisma.credentials.update(args);
+import * as bcrypt from "bcryptjs";
+import createCredentials from "../../prisma/queries/credentials/createCredentials";
+import findCredentialsByEmail from "../../prisma/queries/credentials/findCredentialsByEmail";
+import {
+  ICredentialsEmail,
+  ICredentialsPassword,
+} from "../../types/Credentials";
+class Credentials {
+  async create(email: ICredentialsEmail, password: ICredentialsPassword) {
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    return await createCredentials(email, hashedPassword, salt);
   }
-  /**
-   * Create credentials row
-   */
-  async create(args: Prisma.CredentialsCreateArgs) {
-    return await prisma.credentials.create(args);
-  }
-  /**
-   * Find credentials
-   */
-  async findCredentials(args: Prisma.CredentialsFindUniqueOrThrowArgs) {
-    return await prisma.credentials.findUniqueOrThrow(args);
-  }
-  /**
-   * Delete credentials
-   */
-  async deleteCredentials(args: Prisma.CredentialsDeleteArgs) {
-    return await prisma.credentials.delete(args);
-  }
+  // update()
+  // delete()
+
+  //??
+  // requestActivation()
+  // activateAccount()
 }
 
-export default new CredentialsOrmLayer();
+export default new Credentials();

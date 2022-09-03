@@ -6,6 +6,9 @@ import findCredentialsByEmail from "../../prisma/queries/credentials/findCredent
 
 describe("Credentials", function () {
   test("Is credentials stored", async () => {
-    await createCredentials(`${uuidv4()}@mail.ru`, "123");
+    const email = `${uuidv4()}@mail.ru`;
+    const creds = await createCredentials(email, "123", "salt");
+    const storedCreds = await findCredentialsByEmail(email);
+    expect(storedCreds).toMatchObject(creds);
   });
 });

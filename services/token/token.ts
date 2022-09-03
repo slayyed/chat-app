@@ -1,6 +1,5 @@
 import { sign, verify } from "jsonwebtoken";
 import ms from "ms";
-import { TokenORMLayer } from "./token.orm";
 import {
   IToken,
   ITokenDecoded,
@@ -10,10 +9,7 @@ import {
 } from "../../types/Token";
 import { ICredentialsId } from "../../types/Credentials";
 import storeRefreshToken from "../../prisma/queries/token/storeRefreshToken";
-class Token extends TokenORMLayer {
-  constructor() {
-    super();
-  }
+class Token {
   private getExpAtMS(time: string) {
     return Math.floor(Date.now() / 1000 + ms(time) / 1000);
   }
