@@ -4,12 +4,16 @@ import findCredentialsByEmail from "../../prisma/queries/credentials/findCredent
 import {
   ICredentialsEmail,
   ICredentialsPassword,
+  ICredentialsPasswordSalt,
 } from "../../types/Credentials";
 class Credentials {
-  async create(email: ICredentialsEmail, password: ICredentialsPassword) {
-    const salt = bcrypt.genSaltSync(10);
+  hashPassword(
+    password: ICredentialsPassword,
+    salt?: ICredentialsPasswordSalt
+  ) {
+    if (!salt) salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    return await createCredentials(email, hashedPassword, salt);
+    return { salt, hashedPassword };
   }
   // update()
   // delete()

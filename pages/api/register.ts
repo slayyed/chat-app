@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import HttpError from "../../error-handlers/HttpError";
+import createCredentials from "../../prisma/queries/credentials/createCredentials";
 import findCredentialsByEmail from "../../prisma/queries/credentials/findCredentialsByEmail";
 import Credentials from "../../services/credentials/credentials";
 
@@ -12,15 +13,20 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     // Throw error if account is finded
     if (isCandidateExist)
       throw new HttpError(400, "User with this username is already reigstered");
+
+    // Hash password
+    const { salt, hashedPassword } = Credentials.hashPassword(password);
+
     // Register user if account is not finded
-    Credentials.create(email, password);
+    await createCredentials(email, hashedPassword, salt);
+
     // Return status of request
     res.status(200).json({ message: "User successfully created" });
   } catch (e) {
     if (e instanceof HttpError) {
-      res.status(e.code).send(e.message);
+      res.status(e.code).json({ message: e.message });
     } else {
-      res.status(500).send("Internal server error");
+      res.status(500).send({ message: "Internal server error" });
     }
   }
 }

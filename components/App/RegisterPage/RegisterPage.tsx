@@ -5,8 +5,13 @@ import Input from "../../Shared/Input/Input";
 import Button from "../../Shared/Button/Button";
 import Error from "../../Shared/Error/Error";
 import Spinner from "../../Shared/Spinner/Spinner";
-import api from "../../../api/api";
+import { useDispatch, useSelector } from "react-redux";
+import { registerAccount } from "../../../redux/actions/credentials";
+import { RootState, store } from "../../../redux/store";
 const RegisterPage = () => {
+  const dispatch = useDispatch<typeof store.dispatch>();
+  const credentialsState = useSelector((state: RootState) => state.credentials);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,10 +20,7 @@ const RegisterPage = () => {
   //Submit controller
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    api
-      .post("/register", formData)
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    dispatch(registerAccount(formData));
   };
   const handleFieldChange =
     (fieldName: "email" | "password") =>
@@ -32,8 +34,13 @@ const RegisterPage = () => {
   };
   return (
     <>
-      <Error text={"text"} onClose={() => console.log("click")} />
-      {/* <Spinner /> */}
+      {credentialsState?.error && (
+        <Error
+          text={credentialsState?.error}
+          onClose={() => console.log("click")}
+        />
+      )}
+      {credentialsState?.loading && <Spinner />}
       <Form className={styles.registerPageForm} onSubmit={handleSubmit}>
         <Form.Item label="Электронная почта">
           <Input

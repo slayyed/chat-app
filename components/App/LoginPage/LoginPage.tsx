@@ -5,8 +5,14 @@ import Input from "../../Shared/Input/Input";
 import Button from "../../Shared/Button/Button";
 import Error from "../../Shared/Error/Error";
 import Spinner from "../../Shared/Spinner/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, store } from "../../../redux/store";
+import { loginIntoAccount } from "../../../redux/actions/credentials";
 const LoginPage = () => {
-  //Form state 
+  const dispatch = useDispatch<typeof store.dispatch>();
+  const credentialsState = useSelector((state: RootState) => state.credentials);
+
+  //Form state
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,14 +20,15 @@ const LoginPage = () => {
 
   //Submit controller
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // event.preventDefault();
+    event.preventDefault();
+    dispatch(loginIntoAccount(formData));
   };
   //Field change handler
   const handleFieldChange =
     (fieldName: "email" | "password") =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setFormData((prev) => ({ ...prev, [fieldName]: e.target.value }));
-  };
+    };
   //Button activity status
   const isButtonDisabled = (): boolean => {
     return Object.values(formData).some((value) => {
@@ -29,9 +36,14 @@ const LoginPage = () => {
     });
   };
   return (
-    <Form method="POST" action="/api/login" className={styles.loginPageForm} onSubmit={handleSubmit}>
-      {/* <Error text={"123"} onClose={() => ({})}/> */}
-      {/* <Spinner /> */}
+    <Form className={styles.loginPageForm} onSubmit={handleSubmit}>
+      {credentialsState?.error && (
+        <Error
+          text={credentialsState?.error}
+          onClose={() => console.log("click")}
+        />
+      )}
+      {credentialsState?.loading && <Spinner />}
       <Form.Item label="Электронная почта">
         <Input
           type={"email"}
