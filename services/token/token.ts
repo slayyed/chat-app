@@ -13,7 +13,7 @@ class Token {
   private getExpAtMS(time: string) {
     return Math.floor(Date.now() / 1000 + ms(time) / 1000);
   }
-  createToken(
+  private createToken(
     payload: ITokenPayload,
     lifeTime: ITokenLifeTime,
     secret: ITokenSecret

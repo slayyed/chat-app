@@ -5,7 +5,8 @@ import bcrypt from "bcryptjs";
 import findCredentialsByEmail from "../../prisma/queries/credentials/findCredentialsByEmail";
 import HttpError from "../../error-handlers/HttpError";
 import Credentials from "../../services/credentials/credentials";
-
+import Token from "../../services/token/token";
+import { setCookie } from "cookies-next";
 async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     const { email, password } = req.body;
@@ -23,6 +24,21 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     // Throws error when password is not right
     if (hashedPassword !== candidateAccount.password)
       throw new HttpError(400, "Invalid email or password");
+
+    const { accessToken, refreshToken } = await Token.createTokenPair({
+      id: candidateAccount.id,
+      email: candidateAccount.email,
+    });
+    setCookie("accessToken", accessToken.token, {
+      req,
+      res,
+      expires: new Date(accessToken.maxAge),
+    });
+    setCookie("refreshToken", refreshToken.token, {
+      req,
+      res,
+      expires: new Date(refreshToken.maxAge),
+    });
     // Return status of request
     res.status(200).json({ candidateAccount });
   } catch (e) {
