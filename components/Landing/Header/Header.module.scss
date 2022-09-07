@@ -1,0 +1,55 @@
+.landingHeader{
+    width: 100%;
+    padding: 36px 78px 36px 78px;
+    position: fixed;
+    top:0px;
+    z-index: 100;
+}
+
+.landingHeaderList{
+    display: flex;
+    color:white;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.landingHeaderLinks{
+    font-size: 20px;
+    line-height: 100%;
+    &:hover{
+        text-shadow: white;
+    }
+}
+
+.landingHeaderLinkActive{
+    font-weight: 700;
+}
+
+.landingHeaderListItems{
+    &:not(:last-child){
+        margin-right:  35px;
+    }
+}
+
+
+.landingHeaderLinkAuth{
+    margin-left: 50px;
+    &::after{
+        content:"/";
+        position: relative;
+        right: -20px;
+        pointer-events: none;
+    }
+}
+
+
+.landingHeaderBlack{
+    background: rgba(0, 0, 0, 0.836);
+    backdrop-filter: blur(31px);
+    position: sticky;
+    top:0px;
+    transition: 5s background;
+    *{
+        font-size: 16px;
+    }
+}

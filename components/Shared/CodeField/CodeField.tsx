@@ -2,24 +2,23 @@ import React, { useState } from "react";
 // import { IFormState } from "../../App/CodeVerificationLayout/CodeVerificationLayout";
 import styles from "./CodeField.module.scss";
 
-interface IFormState{
-  code:string[];
+interface IFormState {
+  code: string[];
 }
 
 interface ICodeFieldProps {
   size?: number;
   acceptableValues?: RegExp;
-  code:string[];
-  setCode: React.Dispatch<React.SetStateAction<IFormState>>
+  code: string[];
+  setCode: React.Dispatch<React.SetStateAction<IFormState>>;
 }
 
 const CodeField: React.FC<ICodeFieldProps> = ({
   size = 6,
   acceptableValues = /\d/,
   setCode,
-  code
+  code,
 }) => {
-  
   function updateCode(event: React.ChangeEvent<HTMLInputElement>) {
     const {
       value,
@@ -34,7 +33,7 @@ const CodeField: React.FC<ICodeFieldProps> = ({
       setCode((prev) => {
         const newState = [...prev.code];
         newState[Number(index)] = value;
-        return {code:newState};
+        return { ...prev, code: newState };
       });
     if (value !== "" && nextSibling) {
       (nextSibling as HTMLInputElement).focus();
@@ -42,7 +41,6 @@ const CodeField: React.FC<ICodeFieldProps> = ({
       (previousSibling as HTMLInputElement).focus();
     }
   }
-
 
   return (
     <div className={styles.codeField}>
