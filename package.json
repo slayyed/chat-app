@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run copy:sqlite",
+    "copy:sqlite": "cp ./prisma/app.db .next/server/pages/api/",
     "start": "next start",
     "lint": "next lint",
     "db:rollback": "npx prisma db push --force-reset && npx prisma db seed",
