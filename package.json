@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run copy:sqlite",
-    "copy:sqlite": "cp ./prisma/app.db .next/server/pages/api/",
+    "build": "npm run prisma:pprod && next build",
     "start": "next start",
     "lint": "next lint",
     "db:rollback": "npx prisma db push --force-reset && npx prisma db seed",
+    "prisma:pprod": "node ./pre-build-scripts/change-prisma-file.js && npm run db:rollback" ,
     "test": "jest"
   },
   "prisma": {
