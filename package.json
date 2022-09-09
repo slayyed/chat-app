@@ -4,12 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run prisma:pprod && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "db:rollback": "npx prisma db push --force-reset && npx prisma db seed",
-    "prisma:pprod": "node ./pre-build-scripts/change-prisma-file.js && npm run prisma:showfile" ,
-    "prisma:showfile": "node ./pre-build-scripts/getFileData.js",
     "test": "jest"
   },
   "prisma": {
