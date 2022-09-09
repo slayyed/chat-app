@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import api from "../../api/api";
+import api from "../../axios/api";
 import { ICredentials } from "../../types/Credentials";
 export const registerAccount = createAsyncThunk(
   "credentials/register",
