@@ -9,7 +9,7 @@
     "lint": "next lint",
     "db:rollback": "npx prisma db push --force-reset && npx prisma db seed",
     "test": "jest",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build"
+    "vercel-build": "prisma generate && npm run db:rollback && next build"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
