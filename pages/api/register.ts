@@ -8,22 +8,26 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     const { email, password } = req.body;
     // Find an existing account
-    const isCandidateExist = !!(await findCredentialsByEmail(email));
-
+    // const isCandidateExist = !!(await findCredentialsByEmail(email));
+    res.status(200).json({ email, password });
     // Throw error if account is finded
-    if (isCandidateExist)
-      res.status(400).json({ message: "User already exists" });
+    // if (isCandidateExist)
+    //   throw new HttpError(400, "User with this username is already reigstered");
 
-    // Hash password
-    const { salt, hashedPassword } = Credentials.hashPassword(password);
+    // // Hash password
+    // const { salt, hashedPassword } = Credentials.hashPassword(password);
 
-    // Register user if account is not finded
-    await createCredentials(email, hashedPassword, salt);
+    // // Register user if account is not finded
+    // await createCredentials(email, hashedPassword, salt);
 
-    // Return status of request
-    res.status(200).json({ message: "User successfully created" });
+    // // Return status of request
+    // res.status(200).json({ message: "User successfully created" });
   } catch (e) {
-    res.status(500).send({ message: "Internal server error" });
+    if (e instanceof HttpError) {
+      res.status(e.code).json({ message: e.message });
+    } else {
+      res.status(500).json({ message: "Internal server error" });
+    }
   }
 }
 
