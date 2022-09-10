@@ -8,8 +8,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     const { email, password } = req.body;
     // Find an existing account
-    // const isCandidateExist = !!(await findCredentialsByEmail(email));
-    res.status(200).json({ email, password });
+    const isCandidateExist = !!(await findCredentialsByEmail(email));
+    res.status(200).json({ isCandidateExist });
     // Throw error if account is finded
     // if (isCandidateExist)
     //   throw new HttpError(400, "User with this username is already reigstered");
