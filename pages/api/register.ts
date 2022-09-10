@@ -12,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
 
     // Throw error if account is finded
     if (isCandidateExist)
-      throw new HttpError(400, "User with this username is already reigstered");
+      res.status(400).json({ message: "User already exists" });
 
     // Hash password
     const { salt, hashedPassword } = Credentials.hashPassword(password);
@@ -23,11 +23,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     // Return status of request
     res.status(200).json({ message: "User successfully created" });
   } catch (e) {
-    if (e instanceof HttpError) {
-      res.status(e.code).json({ message: e.message });
-    } else {
-      res.status(500).send({ message: "Internal server error" });
-    }
+    res.status(500).send({ message: "Internal server error" });
   }
 }
 
