@@ -3,8 +3,9 @@
   height: 100vh;
   position: relative;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 0px 70px;
+  padding: 113px 0px 0px 70px;
 }
 
 .landingHomeGradientLine {
@@ -19,27 +20,31 @@
   width: 140px;
   position: absolute;
   z-index: 0;
-  left:0px;
-  top:0px;
+  left: 0px;
+  top: 0px;
 }
 
 .landingHomeIntroText {
-  width: 928px;
+  max-width: 928px;
+  width: 100%;
   font-size: 170px;
   line-height: 70%;
   font-family: "NeueMachina";
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #ffffff;
   z-index: 2;
 }
 
-.landingHomeIntroTextLogo{
-    font-family: 'Helvetica Light';
-    padding: 0px 20px 0px 80px;
+.landingHomeIntroTextLogo {
+  font-family: "Helvetica Light";
+  padding: 0px 20px 0px 80px;
 }
 
-.landingHomeIntroTextStar{
-    font-family: 'Helvetica Bold';
-    font-size:100px;
-    vertical-align: super;
+.landingHomeIntroTextStar {
+  font-family: "Helvetica Bold";
+  font-size: 100px;
+  vertical-align: super;
+}
+
+.landingHomeAppPreview{
 }
