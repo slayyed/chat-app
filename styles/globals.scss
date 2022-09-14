@@ -1,3 +1,4 @@
+@use "sass:math"; 
 @import './reset.scss';
 @import './fonts.scss'; 
 @import './animate.min.scss'; 
@@ -7,6 +8,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Helvetica";
+  overflow-x: hidden;
 }
 
 a {

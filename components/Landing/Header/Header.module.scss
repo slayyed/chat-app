@@ -1,55 +1,142 @@
-.landingHeader{
+.landingHeader {
+  width: 100%;
+  padding: 36px 138px 30px 48px;
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid ;
+  background-color: #171717;
+  border-image: linear-gradient(90deg, #fe9d11 3.16%, #c84ba7 100%);
+  border-image-slice: 1;
+}
+
+.landingHeaderLogo {
+  font-family: "NeueMachina";
+  font-size: 30px;
+  color: #dadada;
+  text-transform: uppercase;
+  height: 0.9em;
+  display: inline-block;
+}
+
+.landingHeaderList {
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.landingHeaderLinks {
+  font-size: 20px;
+  line-height: 100%;
+  &:hover {
+    text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.85);
+    transition: 0.5s text-shadow;
+  }
+}
+
+.landingHeaderLinkActive {
+  font-weight: 700;
+}
+
+.landingHeaderListItems {
+  &:not(:last-child) {
+    margin-right: 54px;
+  }
+}
+
+
+
+.landingHeaderMenuCheckbox {
+  display: none;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .landingHeader {
+    padding: 36px 138px 30px 25px;
+  }
+  .landingHeaderList {
+    flex-direction: column;
+    position: absolute;
+    height: 100vh;
+    max-width: 500px;
     width: 100%;
-    padding: 36px 78px 36px 78px;
-    position: fixed;
-    top:0px;
-    z-index: 100;
-}
-
-.landingHeaderList{
-    display: flex;
-    color:white;
+    background: rgba(32, 32, 32, 0.78);
+    backdrop-filter: blur(7px);
+    right: 0;
+    top: 0;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-end;
-}
+    display: flex;
 
-.landingHeaderLinks{
-    font-size: 20px;
-    line-height: 100%;
-    &:hover{
-        text-shadow: white;
+    transform: translate(150%);
+    transition: transform 0.5s ease-in-out;
+  }
+  .landingHeaderListItems {
+    &:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 50px;
     }
-}
+  }
+  .landingHeaderMenuCheckbox {
+    position: absolute;
+    display: block;
+    height: 25px;
+    width: 35px;
+    top: 35px;
+    right: 30px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
 
-.landingHeaderLinkActive{
-    font-weight: 700;
-}
-
-.landingHeaderListItems{
-    &:not(:last-child){
-        margin-right:  35px;
+    &:checked ~ .landingHeaderHamburgerLines .landingHeaderHamburgerLineOne {
+        transform: rotate(45deg);
     }
-}
-
-
-.landingHeaderLinkAuth{
-    margin-left: 50px;
-    &::after{
-        content:"/";
-        position: relative;
-        right: -20px;
-        pointer-events: none;
+    &:checked ~ .landingHeaderHamburgerLines .landingHeaderHamburgerLineTwo {
+        transform: scaleY(0);
     }
-}
-
-
-.landingHeaderBlack{
-    background: rgba(0, 0, 0, 0.836);
-    backdrop-filter: blur(31px);
-    position: sticky;
-    top:0px;
-    transition: 5s background;
-    *{
-        font-size: 16px;
+    &:checked ~ .landingHeaderHamburgerLines .landingHeaderHamburgerLineThree {
+        transform: rotate(-45deg);
     }
+
+    &:checked ~ .landingHeaderList {
+      transform: translateX(0%);
+    }
+  }
+
+  .landingHeaderHamburgerLines {
+    display: block;
+    height: 31px;
+    width: 40px;
+    position: absolute;
+    top: 35px;
+    right: 30px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .landingHeaderHamburgerLine {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: rgb(255, 255, 255);
+  }
+  .landingHeaderHamburgerLineOne {
+    transform-origin: 0% 0%;
+    transition: transform 0.4s ease-in-out;
+  }
+  .landingHeaderHamburgerLineTwo {
+    transition: transform 0.2s ease-in-out;
+  }
+  .landingHeaderHamburgerLineThree {
+    transform-origin: 0% 100%;
+    transition: transform 0.4s ease-in-out;
+  }
 }

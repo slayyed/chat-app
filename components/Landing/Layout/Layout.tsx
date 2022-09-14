@@ -8,6 +8,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
   return (
     <div className={styles.landingLayout}>
       <Header />
+
       {children}
     </div>
   );
