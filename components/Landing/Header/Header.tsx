@@ -8,6 +8,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useScroll } from "../../../hooks/useScroll";
 import Button from "../../Shared/Button/Button";
 import styles from "./Header.module.scss";
 type Routes = "#home" | "#opportunities" | "#contacts" | "/register" | "/login";
@@ -21,7 +22,7 @@ const menuItems: Record<Routes, string> = {
 };
 const Header = () => {
   const [activeLink, setActiveLink] = useState<Routes>("#home");
-  // const [isScreenScrolled, setScreenScrolledStatus] = useState(false);
+
   const linkStyles = (currentLink: Routes) =>
     clsx({
       [styles.landingHeaderLinks]: true,
@@ -29,25 +30,11 @@ const Header = () => {
     });
   const menuStyles = clsx({
     [styles.landingHeader]: true,
-    // [styles.landingHeaderBlack]: isScreenScrolled,
   });
   function changeActiveLink(path: Routes) {
     setActiveLink(path);
   }
 
-  const handleScroll = () => {
-    // let isMenuShouldBeBlack = false;
-    // if (window.scrollY > 1080) isMenuShouldBeBlack = true;
-    // else isMenuShouldBeBlack = false;
-    // setScreenScrolledStatus(isMenuShouldBeBlack);
-  };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll, true);
-  //   };
-  // }, []);
   return (
     <nav className={menuStyles}>
       <div className={styles.landingHeaderLogo}>CHATTO</div>
