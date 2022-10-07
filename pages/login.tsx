@@ -3,7 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Layout } from "../components/App/Layout/Layout";
 import LoginPage from "../components/App/LoginPage/LoginPage";
-
+import { GetServerSideProps } from "next";
+import absoluteUrl from "next-absolute-url";
+import axios from "axios";
 const Login: NextPage = () => {
   return (
     <Layout>
@@ -18,5 +20,21 @@ const Login: NextPage = () => {
     </Layout>
   );
 };
+export const getServerSideProps: GetServerSideProps = async ({
+  resolvedUrl,
+  req,
+  res,
+}) => {
+  const { origin } = absoluteUrl(req);
+  const response = await axios.get(`${origin}/api/auth/status`, {
+    withCredentials: true,
+    headers: {
+      Cookie: req.headers.cookie! || "",
+    },
+  });
 
+  console.log(response.data);
+
+  return { props: {} };
+};
 export default Login;

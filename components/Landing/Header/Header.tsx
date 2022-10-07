@@ -1,15 +1,5 @@
 import clsx from "clsx";
-import { useRouter } from "next/router";
-import React, {
-  Ref,
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useScroll } from "../../../hooks/useScroll";
-import Button from "../../Shared/Button/Button";
+import React, { useState } from "react";
 import styles from "./Header.module.scss";
 type Routes = "#home" | "#opportunities" | "#contacts" | "/register" | "/login";
 

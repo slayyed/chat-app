@@ -1,11 +1,22 @@
 .form {
+  padding-top: 50px;
+  width: 100%;
+  max-width: 500px;
 }
 .formLabel{
-
+  display: block;
+  &:not(:first-child){
+    margin-top: 45px;
+  }
 }
+
 .formLabelText {
   font-size: 16px;
   line-height:100%;
   color: #ffffff;
   padding-bottom: 14px;
+}
+
+.formFooter{
+  margin-top: 51px;
 }

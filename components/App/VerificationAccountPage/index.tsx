@@ -3,6 +3,7 @@ import Button from "../../Shared/Button/Button";
 import CodeField from "../../Shared/CodeField/CodeField";
 import Form from "../../Shared/Form/Form";
 import styles from "./VerificationAccount.module.scss";
+import coreStyles from "../Layout/Layout.module.scss";
 const Index = () => {
   const [formState, setFormState] = useState({ code: new Array(6).fill("") });
   const getDigitCodeValue = (code: string[]) => {
@@ -18,11 +19,15 @@ const Index = () => {
     });
   };
   return (
-    <Form className={styles.registerPageForm} onSubmit={handleSubmit}>
+    <Form
+      className={styles.verificationAccountPageForm}
+      onSubmit={handleSubmit}
+    >
       <Form.Item label="Код">
         <CodeField code={formState.code} setCode={setFormState} />
       </Form.Item>
-      <div className={styles.registerPageFormButton}>
+
+      <Form.Footer className={coreStyles.layoutStepFormFooter}>
         <Button disabled={isButtonDisabled()}>
           <svg
             width="23"
@@ -36,9 +41,9 @@ const Index = () => {
               fill="currentColor"
             />
           </svg>
-          Зарегистрироваться
+          Подтвердить
         </Button>
-      </div>
+      </Form.Footer>
     </Form>
   );
 };

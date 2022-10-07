@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "../../Shared/Form/Form";
 import styles from "./RegisterPage.module.scss";
+import coreStyles from "../Layout/Layout.module.scss";
 import Input from "../../Shared/Input/Input";
 import Button from "../../Shared/Button/Button";
 import Error from "../../Shared/Error/Error";
@@ -8,6 +9,7 @@ import Spinner from "../../Shared/Spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { registerAccount } from "../../../redux/actions/credentials";
 import { RootState, store } from "../../../redux/store";
+
 const RegisterPage = () => {
   const dispatch = useDispatch<typeof store.dispatch>();
   const credentialsState = useSelector((state: RootState) => state.credentials);
@@ -72,11 +74,8 @@ const RegisterPage = () => {
             onChange={handleFieldChange("password")}
           />
         </Form.Item>
-        {/* Remember me */}
-        <div className="register-page__form-remember-me"></div>
-        <div className={styles.registerPageFormButton}>
+        <Form.Footer className={coreStyles.layoutStepFormFooter}>
           <Button disabled={isButtonDisabled()}>
-            {/* <CheckIcon /> */}
             <svg
               width="23"
               height="23"
@@ -91,7 +90,7 @@ const RegisterPage = () => {
             </svg>
             Зарегистрироваться
           </Button>
-        </div>
+        </Form.Footer>
       </Form>
     </>
   );

@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns:5px 1fr;
+  grid-template-columns: 5px 1fr;
   grid-template-rows: 75px 1fr;
 }
 
@@ -32,7 +32,7 @@
   font-family: "NeueMachina";
   font-size: 30px;
   line-height: 100%;
-  color: #DADADA;
+  color: #dadada;
   text-transform: uppercase;
   padding-right: 18px;
 }
@@ -48,18 +48,37 @@
   background: #181818;
 }
 
-
-.layoutStep{
-  padding: 100px 0 20px 50px;
+.layoutStep {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0px 30px;
 }
 
-.layoutStepTitle{
+.layoutStepTitle {
   font-family: "NeueMachina";
   display: flex;
   align-items: flex-end;
   font-size: 25px;
   line-height: 100%;
-  max-width: 389px;
   text-transform: uppercase;
   color: #dadada;
+}
+
+.layoutStepFormFooter {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+@media screen and (max-width: 400px) {
+  .layoutHeader {
+    padding: 0 15px;
+  }
+  .layoutStep {
+    padding: 0 15px;
+  }
 }

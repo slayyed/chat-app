@@ -1,18 +1,16 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import CredentialsOrmLayer from "../../services/credentials/credentials";
-import bcrypt from "bcryptjs";
-type LoginData = {
-  email: string;
-  password: string;
-};
+import Credentials from "../../../services/credentials/credentials";
 
 async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    // Find an existing account
-    // Throw error if account is finded
-    // Register user if account is not finded
-    // Return status of request
+    const { code } = req.body;
+    // Find an existing account by token
+
+    // Throw error if account is not finded
+    // Compare codes
+    // Throw error when code is invalid
+    // Return status of request and verification status
     res.status(200).json({ "123": 123 });
   } catch (e) {
     res.status(401).json({ status: e });

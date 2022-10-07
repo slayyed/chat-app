@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Form from "../../Shared/Form/Form";
 import styles from "./LoginPage.module.scss";
+import coreStyles from "../Layout/Layout.module.scss";
+import { getCookie } from "cookies-next";
 import Input from "../../Shared/Input/Input";
 import Button from "../../Shared/Button/Button";
 import Error from "../../Shared/Error/Error";
@@ -35,6 +37,7 @@ const LoginPage = () => {
       return !!value === false;
     });
   };
+
   return (
     <Form className={styles.loginPageForm} onSubmit={handleSubmit}>
       {credentialsState?.error && (
@@ -76,9 +79,7 @@ const LoginPage = () => {
           onChange={handleFieldChange("password")}
         />
       </Form.Item>
-      {/* Remember me */}
-      <div className="login-page__form-remember-me"></div>
-      <div className={styles.loginPageFormButton}>
+      <Form.Footer className={coreStyles.layoutStepFormFooter}>
         <Button disabled={isButtonDisabled()}>
           <svg
             width="23"
@@ -94,7 +95,7 @@ const LoginPage = () => {
           </svg>
           Войти
         </Button>
-      </div>
+      </Form.Footer>
     </Form>
   );
 };

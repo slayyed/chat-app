@@ -6,7 +6,7 @@ const Code = () => {
   return (
     <Layout>
       <Head>
-        <title>Login into app</title>
+        <title>Verificate your account</title>
         <meta name="description" content="Login in chatto" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
